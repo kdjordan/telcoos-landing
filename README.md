@@ -21,4 +21,4 @@ routes them here. No DNS change needed — `telcoos.io` already points at the bo
 ## Editing
 
 It's one file. Edit `index.html` and redeploy. Update the contact address
-(`hello@telcoos.io`) to a mailbox that actually forwards.
+(`k.dean.jordan@gmail.com`) to a mailbox that actually forwards.
