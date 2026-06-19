@@ -1,0 +1,18 @@
+/* TelcoOS — Landing page brand tokens (LIGHT theme — the chosen design).
+   Single source of truth; mirrors the Claude Design handoff's light palette. */
+:root{
+  /* surfaces — warm paper */
+  --bg:#F5F0E6; --bg-2:#FBF6EC; --card:#FFFFFF; --card-2:#FFFDF8;
+  /* lines */
+  --border:rgba(26,21,14,0.10); --border-2:rgba(26,21,14,0.17);
+  /* text — warm near-black */
+  --text:#1A150E; --text-2:rgba(26,21,14,0.62); --text-3:rgba(26,21,14,0.42);
+  /* brand accent — deep amber, legible on cream */
+  --accent:#C9760A; --accent-2:#E0921A; --on-accent:#FFFFFF; --accent-soft:rgba(201,118,10,0.12);
+  /* themed effects */
+  --wave-color:#C9760A; --glow:rgba(201,118,10,0.13); --nav-bg:rgba(245,240,230,0.82);
+  /* type */
+  --display:'Clash Display',sans-serif; --body:'General Sans',sans-serif;
+  /* geometry — flat, tight radii */
+  --r:5px; --r-lg:8px; --max:1180px;
+}

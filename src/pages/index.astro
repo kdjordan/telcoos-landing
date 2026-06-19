@@ -1,0 +1,141 @@
+---
+import Base from '../layouts/Base.astro';
+import Helm from '../components/Helm.astro';
+import Icon from '../components/Icon.astro';
+import Waves from '../components/Waves.astro';
+import { site, trust, steps, agentBullets, caps, metrics, faqs } from '../data/content.ts';
+---
+<Base>
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <Waves />
+    <div class="radar"><div class="glow"></div></div>
+    <div class="wrap hero-in">
+      <span class="eyebrow"><Helm size={15} />{site.tagline}</span>
+      <h1>Your VOIP traffic,<br /><span class="a">run by an agent.</span></h1>
+      <p class="lead">TelcoOS unifies routing, rates, and reporting into one intelligent workspace — so the busywork of moving telecom traffic runs itself, and you focus on the deals.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#contact">Get in touch <Icon name="arrow" /></a>
+        <a class="btn btn-ghost" href="#how">See how it works</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- TRUST -->
+  <div class="trust"><div class="wrap trust-in">
+    <span class="label">Built for the people who move minutes</span>
+    <div class="names">{trust.map((t) => <span>{t}</span>)}</div>
+  </div></div>
+
+  <!-- HOW IT WORKS -->
+  <section class="block" id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">How it works</span>
+        <h2>One workspace. The busywork runs itself.</h2>
+        <p>Routing, rates, and reporting have always lived in spreadsheets, switch configs, and inboxes. TelcoOS puts them in one place — and hands the repetitive parts to an agent.</p>
+      </div>
+      <div class="steps">
+        {steps.map((s) => (
+          <div class="step">
+            <div class="n">{s.n}</div>
+            <div class="ico"><Icon name={s.icon} /></div>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENT -->
+  <section class="block agent" id="agent">
+    <div class="wrap agent-grid">
+      <div>
+        <span class="eyebrow">The agent</span>
+        <h2>An agent at the helm.</h2>
+        <p class="muted" style="margin-top:18px;">It watches every route, deck, and CDR stream the way a great ops lead would — and acts on what it sees, around the clock.</p>
+        <ul>
+          {agentBullets.map((b) => (
+            <li>
+              <span class="chk"><Icon name="check" size={14} /></span>
+              <span><b>{b.lead}</b> {b.rest}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="stage"><Helm size={150} /></div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section class="block" id="caps">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Capabilities</span>
+        <h2>Everything a routing desk needs.</h2>
+      </div>
+      <div class="caps">
+        {caps.map((c) => (
+          <div class="cap">
+            <div class="ico"><Icon name={c.icon} /></div>
+            <h3>{c.title}</h3>
+            <p>{c.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT -->
+  <section class="block product">
+    <div class="wrap">
+      <div class="sec-head" style="margin:0 auto 48px;text-align:center;">
+        <span class="eyebrow" style="justify-content:center;">The workspace</span>
+        <h2>Your whole operation, one screen.</h2>
+      </div>
+      <div class="frame">
+        <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">app.telcoos.io</span></div>
+        <div class="shot">
+          <img src="/workspace.png" width="1400" height="880" loading="lazy" alt="The TelcoOS workspace — carrier files, inbox, and an agent chat unified in one screen." />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS (⚠️ placeholder figures) -->
+  <div class="metrics"><div class="wrap block" style="padding:84px 40px;"><div class="metrics-grid">
+    {metrics.map((m) => (
+      <div class="metric"><div class="num" set:html={m.num}></div><div class="lbl">{m.lbl}</div></div>
+    ))}
+  </div></div></div>
+
+  <!-- FAQ -->
+  <section class="block" id="faq">
+    <div class="wrap" style="max-width:880px;">
+      <div class="sec-head"><span class="eyebrow">FAQ</span><h2>Questions, answered.</h2></div>
+      <div class="faq">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q} <span class="pm"><Icon name="plus" /></span></summary>
+            <div class="faq-a"><div class="inner">{f.a}</div></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final" id="contact">
+    <Waves bottom={true} />
+    <div class="radar"><div class="glow" style="left:50%;top:-200px;transform:translateX(-50%);"></div></div>
+    <div class="wrap" style="position:relative;">
+      <h2>Stop babysitting routes.<br />Start closing deals.</h2>
+      <p>See how an agent runs the busywork of moving telecom traffic — book a walkthrough with the team.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href={`mailto:${site.contactEmail}`}>Get in touch <Icon name="arrow" /></a>
+        <a class="btn btn-ghost" href="#top">Back to top</a>
+      </div>
+    </div>
+  </section>
+</Base>

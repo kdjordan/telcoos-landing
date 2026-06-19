@@ -1,0 +1,119 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+import Helm from '../components/Helm.astro';
+import Icon from '../components/Icon.astro';
+import { site, nav, faqs } from '../data/content.ts';
+
+interface Props { title?: string; description?: string; }
+const {
+  title = `${site.name} — ${site.tagline}`,
+  description = site.description,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og.png', Astro.site); // TODO: add public/og.png (1200×630)
+
+// Structured data — lets search + AI crawlers understand the product unambiguously.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${Astro.site}#org`,
+      name: site.name,
+      url: Astro.site?.toString(),
+      logo: new URL('/favicon.svg', Astro.site).toString(),
+      description: site.description,
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: site.name,
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      description: site.description,
+      publisher: { '@id': `${Astro.site}#org` },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+};
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta name="theme-color" content="#F5F0E6" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:site_name" content={site.name} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
+  <!-- Brand fonts (Fontshare) -->
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-in">
+      <a class="brand" href="#top"><Helm size={28} /><span class="name">Telco<span class="os">OS</span></span></a>
+      <div class="nav-links">
+        {nav.map((l) => <a href={l.href}>{l.label}</a>)}
+      </div>
+      <a class="btn btn-primary" href="#contact">Get in touch <Icon name="arrow" /></a>
+    </div>
+  </nav>
+
+  <slot />
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <a class="brand" href="#top"><Helm size={26} /><span class="name">Telco<span class="os">OS</span></span></a>
+          <p>The agentic VOIP traffic manager. Routing, rates, and reporting — run by an agent.</p>
+        </div>
+        <div class="foot-cols">
+          <div class="foot-col">
+            <h4>Product</h4>
+            {nav.map((l) => <a href={l.href}>{l.label}</a>)}
+          </div>
+          <div class="foot-col">
+            <h4>Company</h4>
+            <a href="#">About</a>
+            <a href="#">Careers</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <div class="foot-col">
+            <h4>Legal</h4>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+          </div>
+        </div>
+      </div>
+      <div class="foot-bottom"><span>© 2026 {site.name}</span><span>Built by Kevin Jordan</span></div>
+    </div>
+  </footer>
+</body>
+</html>

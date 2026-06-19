@@ -1,0 +1,33 @@
+# TelcoOS
+
+> The agentic VOIP traffic manager. TelcoOS unifies routing, rates, and
+> reporting into one intelligent workspace and hands the repetitive parts of
+> moving telecom traffic to an agent.
+
+TelcoOS is built for wholesale carriers, VOIP aggregators, and routing desks —
+the people who move minutes. An agent watches every route, rate deck, and CDR
+stream around the clock and acts on what it sees.
+
+## What the agent does
+- Re-routes automatically when a carrier degrades or a cheaper path opens up.
+- Flags margin risk the moment a new rate deck would put a route underwater.
+- Reconciles carrier invoices against your CDRs and surfaces discrepancies.
+- Answers plain-language questions about your traffic and runs the query.
+
+## Capabilities
+- Least-cost routing (LCR) across every carrier and dial code, with quality guards.
+- Rate deck management — import, version, and diff carrier decks.
+- CDR analytics — ASR, ACD, margin, and PDD by route, carrier, and destination.
+- Margin monitoring with alerts before a deck change bites.
+- Carrier reconciliation against your own CDRs.
+- Real-time alerts on degradation, fraud spikes, and margin events.
+
+## How it fits
+TelcoOS sits on top of your routing layer and reads your CDRs — it complements
+the softswitch and class-4 infrastructure you already run. You set the
+guardrails (margin floors, quality thresholds, approved carriers) and decide
+whether the agent acts autonomously or proposes changes for you to confirm.
+
+## Contact
+- Site: https://telcoos.io
+- Email: hello@telcoos.io

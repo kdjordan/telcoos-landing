@@ -1,0 +1,48 @@
+---
+// Decorative ocean-swell background. This is the ONE bit of client JS on the
+// page — purely visual progressive enhancement (it needs viewport size + resize).
+// The script is hoisted/bundled once by Astro regardless of how many instances render.
+interface Props { bottom?: boolean; }
+const { bottom = false } = Astro.props;
+---
+<div class={`waves${bottom ? ' waves--bottom' : ''}`}><svg data-waves></svg></div>
+
+<script>
+  function drawWaves(svg: SVGElement) {
+    const ns = 'http://www.w3.org/2000/svg';
+    const w = svg.clientWidth || 1200;
+    const h = svg.clientHeight || 700;
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    svg.innerHTML = '';
+    const waveColor = getComputedStyle(document.body).getPropertyValue('--wave-color').trim() || '#C9760A';
+    const rows = Math.ceil(h / 34) + 2;
+    const step = 18;
+    for (let i = 0; i < rows; i++) {
+      const baseY = i * 34 - 20;
+      const amp = 5 + (i % 3) * 2;
+      const len = 160 + (i % 4) * 40;
+      const phase = (((i * 37) % 360) * Math.PI) / 180;
+      let d = 'M0 ' + (baseY + amp * Math.sin(phase)).toFixed(1);
+      for (let x = step; x <= w; x += step) {
+        const y = baseY + amp * Math.sin(phase + (x / len) * 2 * Math.PI);
+        d += ' L' + x + ' ' + y.toFixed(1);
+      }
+      const p = document.createElementNS(ns, 'path');
+      p.setAttribute('d', d);
+      p.setAttribute('fill', 'none');
+      p.setAttribute('stroke', waveColor);
+      p.setAttribute('stroke-width', '1');
+      p.setAttribute('opacity', (0.05 + (i / rows) * 0.05).toFixed(3));
+      svg.appendChild(p);
+    }
+  }
+  function paint() {
+    document.querySelectorAll<SVGElement>('[data-waves]').forEach(drawWaves);
+  }
+  paint();
+  let t: ReturnType<typeof setTimeout>;
+  window.addEventListener('resize', () => {
+    clearTimeout(t);
+    t = setTimeout(paint, 150);
+  });
+</script>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#0F0C09"></rect>
+  <g fill="none">
+    <circle cx="32" cy="32" r="19" stroke="#FFB020" stroke-width="2.6"></circle>
+    
+    <g stroke="#FFB020" stroke-width="2.6" stroke-linecap="round">
+      <line x1="51.00" y1="32.00" x2="58.00" y2="32.00"></line>
+      <line x1="41.50" y1="48.45" x2="45.00" y2="54.52"></line>
+      <line x1="22.50" y1="48.45" x2="19.00" y2="54.52"></line>
+      <line x1="13.00" y1="32.00" x2="6.00" y2="32.00"></line>
+      <line x1="22.50" y1="15.55" x2="19.00" y2="9.48"></line>
+      <line x1="41.50" y1="15.55" x2="45.00" y2="9.48"></line>
+    </g>
+    <g fill="#FFB020">
+      <circle cx="58.00" cy="32.00" r="2.2"></circle>
+      <circle cx="45.00" cy="54.52" r="2.2"></circle>
+      <circle cx="19.00" cy="54.52" r="2.2"></circle>
+      <circle cx="6.00" cy="32.00" r="2.2"></circle>
+      <circle cx="19.00" cy="9.48" r="2.2"></circle>
+      <circle cx="45.00" cy="9.48" r="2.2"></circle>
+    </g>
+    
+    <g stroke="#FFB020" stroke-width="2.4" stroke-linecap="round">
+      <line x1="39.00" y1="32.00" x2="51.00" y2="32.00"></line>
+      <line x1="35.50" y1="38.06" x2="41.50" y2="48.45"></line>
+      <line x1="28.50" y1="38.06" x2="22.50" y2="48.45"></line>
+      <line x1="25.00" y1="32.00" x2="13.00" y2="32.00"></line>
+      <line x1="28.50" y1="25.94" x2="22.50" y2="15.55"></line>
+      <line x1="35.50" y1="25.94" x2="41.50" y2="15.55"></line>
+    </g>
+    
+    <circle cx="32" cy="32" r="6.5" stroke="#FFB020" stroke-width="2"></circle>
+    <circle cx="32" cy="32" r="2.2" fill="#FFB020"></circle>
+  </g>
+</svg>

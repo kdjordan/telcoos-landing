@@ -1,0 +1,27 @@
+# TelcoOS marketing site — we WANT to be found, by search engines and AI agents.
+User-agent: *
+Allow: /
+
+# Named AI crawlers, allowed explicitly (the whole point of this site is discovery).
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://telcoos.io/sitemap-index.xml

@@ -1,0 +1,30 @@
+---
+// "The Helm" logomark — ship's wheel. Same geometry as the kit's helm() function,
+// but computed at build time and emitted as static inline SVG (crawlable, no JS).
+interface Props { size?: number; }
+const { size = 28 } = Astro.props;
+
+const d2r = (a: number) => (a * Math.PI) / 180;
+const pt = (r: number, a: number): [string, string] => [
+  (32 + r * Math.cos(d2r(a))).toFixed(2),
+  (32 + r * Math.sin(d2r(a))).toFixed(2),
+];
+
+let spokes = '';
+let pegs = '';
+for (let i = 0; i < 6; i++) {
+  const a = i * 60;
+  const h = pt(7, a);
+  const r = pt(19, a);
+  const p = pt(26, a);
+  spokes += `<line x1="${h[0]}" y1="${h[1]}" x2="${r[0]}" y2="${r[1]}" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"/>`;
+  pegs += `<line x1="${r[0]}" y1="${r[1]}" x2="${p[0]}" y2="${p[1]}" stroke="var(--accent)" stroke-width="2.6" stroke-linecap="round"/><circle cx="${p[0]}" cy="${p[1]}" r="2.2" fill="var(--accent)"/>`;
+}
+const inner =
+  '<circle cx="32" cy="32" r="19" stroke="var(--accent)" stroke-width="2.6"/>' +
+  pegs +
+  spokes +
+  '<circle cx="32" cy="32" r="6.5" stroke="var(--accent)" stroke-width="2"/>' +
+  '<circle cx="32" cy="32" r="2.2" fill="var(--accent)"/>';
+---
+<svg class="helm" width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true" set:html={inner}></svg>
