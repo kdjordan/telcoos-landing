@@ -7,7 +7,7 @@ export const site = {
   name: 'TelcoOS',
   tagline: 'Agentic Workspace for Telecom',
   description:
-    'TelcoOS is an agentic chat workspace for telecom. It pulls straight from your switch, runs the heavy data analysis your laptop can’t, and builds the rate decks, dashboards, and reports your desk needs — on your command, with the AI provider of your choice.',
+    'Pull straight from your switch, crunch the data Excel can’t, and build rate decks, dashboards, and reports just by asking — the agentic AI workspace for telecom.',
   contactEmail: 'ahoy@telcoos.io',
 };
 
@@ -20,9 +20,38 @@ export const nav = [
 
 export const trust = ['Voice wholesalers', 'Termination providers', 'Aggregators'];
 
+// SOURCES — the back-end data it reads and joins (the OG's bottom row).
+export const sources = [
+  { icon: 'chart', label: 'CDRs' },
+  { icon: 'route', label: 'Routing' },
+  { icon: 'tag', label: 'LCR' },
+  { icon: 'doc', label: 'Billing' },
+  { icon: 'users', label: 'Customers' },
+  { icon: 'building', label: 'Vendors' },
+  { icon: 'phone', label: 'DIDs' },
+  { icon: 'shield', label: 'Fraud' },
+];
+
+// INSIGHT / CLARITY / ACTION — the three-beat transformation (noise → answer → move).
+export const pillars = [
+  { word: 'Insight', line: 'It reads your whole stack — every CDR, deck, route, and invoice.' },
+  { word: 'Clarity', line: 'It finds the answer in the noise, and shows its work.' },
+  { word: 'Action', line: 'It hands you the move — the deck to send, the route to pull.' },
+];
+
+// THE HARD QUESTIONS — what you can finally ask. Last one is the killer.
+// First item is the amber "key" bubble near the node.
+export const questions = [
+  'Why is margin slipping on Demo Carrier?',
+  'Which customers are sending less traffic today than they did last week at this time?',
+  'Make an optimized rate deck based on Demo2 Carrier’s traffic profile over the last 2 weeks. Who should we be routing them to?',
+  'Create a product rate deck using all SD providers that have an ASR over 30% for the last 2 weeks. Build me an LCR report on all CV vendors.',
+  'Create a target deck for Vendor Demo3 — what specific NPANXXs should they decrease to get into at least LCR2 for traffic coming from Carrier Demo3?',
+];
+
 // THE WORKSPACE — main thrust. Heading carries the core idea: find the signal.
 export const workspace = {
-  heading: 'Find the signal in the noise.',
+  heading: 'Ask anything. It knows your stack.',
   lead: 'Telecom margin hides in millions of records spread across a dozen reports. TelcoOS pulls straight from your switch, runs the heavy analysis your laptop can’t, and hands back the answer — and the artifact — just by asking. The soul of an operator, the reach of a data scientist.',
   bullets: [
     { lead: 'Ask in plain language', rest: ' — it already knows the domain (ASR, ALOC, release causes) and turns your question into the analysis.' },
@@ -40,8 +69,8 @@ export const steps = [
 ];
 
 export const caps = [
-  { icon: 'chart', title: 'Crunches data your laptop can’t', body: 'Gigabyte CDRs and 50M+ records, pulled straight from your switch. No exports, no Excel ceiling.' },
-  { icon: 'tag', title: 'Builds the real artifacts on demand', body: 'Optimal rate decks, per-NPANXX target sheets, weekly growth emails, and a daily profitability dashboard that beats your switch’s own — just by asking.' },
+  { icon: 'chart', title: 'Crunches data your laptop can’t', body: 'Gigabyte CDRs and 50M+ records, pulled straight from your switch and reduced to an answer — no exports, no Excel ceiling.' },
+  { icon: 'tag', title: 'The answer, as an artifact', body: 'Ask, and the answer comes back as the thing you needed — a rate deck, a vendor target sheet, a growth email, a profitability dashboard that beats your switch’s own.' },
   { icon: 'route', title: 'Ships with an operator’s brain', body: 'Already knows your switch’s APIs and the domain — ASR, ALOC, release causes — so it works out of the box.' },
   { icon: 'refresh', title: 'LLM- and switch-agnostic', body: 'Bring the AI provider you trust; run on the switch platforms you already use. No lock-in on either.' },
   { icon: 'plus', title: 'Extensible with your own skills', body: 'Teach it a repeatable workflow once and reuse it forever. It’s not locked to anyone else’s preferences.' },

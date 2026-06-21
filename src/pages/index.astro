@@ -3,7 +3,100 @@ import Base from '../layouts/Base.astro';
 import Helm from '../components/Helm.astro';
 import Icon from '../components/Icon.astro';
 import Waves from '../components/Waves.astro';
-import { site, trust, workspace, steps, caps, roadmap, story, faqs } from '../data/content.ts';
+import { site, trust, sources, pillars, questions, workspace, steps, caps, roadmap, story, faqs } from '../data/content.ts';
+
+// "Find the signal" funnel — build-time SVG. Signal node at TOP (under the header);
+// curved (cubic) lines fan DOWN into the field of question bubbles below.
+const NODE = { x: 380, y: 54 };
+const rnd = (s) => { const x = Math.sin(s * 12.9898) * 43758.5453; return x - Math.floor(x); };
+let flines = '';
+for (let i = 0; i < 28; i++) {
+  const t = i / 27;
+  const ex = 50 + t * 660;
+  const ey = 650 + rnd(i + 4.4) * 150;
+  const p1x = NODE.x + (ex - NODE.x) * 0.04;  // short neck — flare starts high
+  const p1y = NODE.y + (ey - NODE.y) * 0.4;
+  const p2x = ex + (ex - NODE.x) * 0.14;       // overshoot out → bell-lip flare
+  const p2y = NODE.y + (ey - NODE.y) * 0.9;
+  const amber = i % 3 === 0;
+  flines += `<path d="M${NODE.x} ${NODE.y} C ${p1x.toFixed(1)} ${p1y.toFixed(1)} ${p2x.toFixed(1)} ${p2y.toFixed(1)} ${ex.toFixed(1)} ${ey.toFixed(1)}" fill="none" stroke="${amber ? '#C9760A' : 'rgba(26,21,14,0.3)'}" stroke-width="${amber ? 1.3 : 1}" opacity="${amber ? 0.5 : 0.16}"/>`;
+}
+// dots clustered in a cloud (denser center, fading out) — mix of filled dots,
+// squares, hollow rings, and bullseyes, with amber accents.
+let fdots = '';
+const cx0 = 380, cy0 = 540;
+for (let i = 0; i < 155; i++) {
+  const ang = rnd(i * 1.7 + 0.3) * 6.2832;
+  const rad = 14 + 300 * Math.pow(rnd(i * 2.9 + 0.7), 0.82);
+  const x = cx0 + Math.cos(ang) * rad;
+  const y = cy0 + Math.sin(ang) * rad * 0.92;
+  if (x < 10 || x > 750 || y < 92 || y > 822) continue;
+  const sz = 1.2 + rnd(i + 2.2) * 3.4;
+  const amber = rnd(i + 5.7) > 0.84;
+  const col = amber ? '#C9760A' : 'rgba(26,21,14,0.55)';
+  const op = Math.max(0.08, 0.14 + (1 - rad / 300) * 0.34 + rnd(i + 9.1) * 0.14).toFixed(2);
+  const k = rnd(i + 4.1);
+  const X = x.toFixed(1), Y = y.toFixed(1), R = sz.toFixed(1);
+  if (k > 0.83) {
+    fdots += `<circle cx="${X}" cy="${Y}" r="${(sz + 1.5).toFixed(1)}" fill="none" stroke="${col}" stroke-width="1" opacity="${op}"/><circle cx="${X}" cy="${Y}" r="${(sz * 0.42).toFixed(1)}" fill="${col}" opacity="${op}"/>`;
+  } else if (k > 0.62) {
+    fdots += `<rect x="${(x - sz).toFixed(1)}" y="${(y - sz).toFixed(1)}" width="${(sz * 2).toFixed(1)}" height="${(sz * 2).toFixed(1)}" fill="${col}" opacity="${op}"/>`;
+  } else if (k > 0.48) {
+    fdots += `<circle cx="${X}" cy="${Y}" r="${R}" fill="none" stroke="${col}" stroke-width="1" opacity="${op}"/>`;
+  } else {
+    fdots += `<circle cx="${X}" cy="${Y}" r="${R}" fill="${col}" opacity="${op}"/>`;
+  }
+}
+const funnelSvg = flines + fdots +
+  `<circle cx="${NODE.x}" cy="${NODE.y}" r="22" fill="#C9760A" opacity="0.12"/>` +
+  `<circle cx="${NODE.x}" cy="${NODE.y}" r="13" fill="none" stroke="#C9760A" stroke-width="2" opacity="0.55"/>` +
+  `<circle cx="${NODE.x}" cy="${NODE.y}" r="6.5" fill="#C9760A"/>`;
+const keyPos = { l: '38.9%', t: '10.6%' };
+const bubblePos = [
+  { l: '54.4%', t: '50.5%' },
+  { l: '41.9%', t: '32.9%' },
+  { l: '7.3%', t: '43.4%' },
+  { l: '55.3%', t: '71.5%' },
+  { l: '5.5%', t: '62.4%' },
+];
+
+// Dev-only bubble-placement editor (stripped from production builds).
+const editorScript = `
+(function(){
+  function init(){
+    var funnel=document.querySelector('.funnel'); if(!funnel) return;
+    var bubbles=Array.prototype.slice.call(funnel.querySelectorAll('.bub'));
+    var panel=document.createElement('div');
+    panel.style.cssText='position:fixed;right:14px;bottom:14px;z-index:99999;background:#14110d;color:#f4f0e6;padding:12px 14px;border-radius:8px;box-shadow:0 10px 34px rgba(0,0,0,.35);font:12px/1.45 ui-monospace,monospace;';
+    var hint=document.createElement('div'); hint.textContent='Drag the bubbles · then Copy'; hint.style.cssText='color:#C9760A;font:600 11px system-ui;margin-bottom:8px;';
+    var pre=document.createElement('div'); pre.style.cssText='white-space:pre;';
+    var btn=document.createElement('button'); btn.textContent='Copy';
+    btn.style.cssText='margin-top:8px;background:#C9760A;color:#fff;border:0;border-radius:5px;padding:6px 12px;font:600 12px system-ui;cursor:pointer;';
+    panel.appendChild(hint); panel.appendChild(pre); panel.appendChild(btn); document.body.appendChild(panel);
+    var NL=String.fromCharCode(10);
+    function pct(b){var f=funnel.getBoundingClientRect();var r=b.getBoundingClientRect();return {l:(r.left-f.left)/f.width*100,t:(r.top-f.top)/f.height*100};}
+    function fmt(p){return "{ l: '"+p.l.toFixed(1)+"%', t: '"+p.t.toFixed(1)+"%' }";}
+    function readout(){
+      var key=null,others=[];
+      bubbles.forEach(function(b){ if(b.classList.contains('bub-key'))key=b; else others.push(b); });
+      var lines=["const keyPos = "+fmt(pct(key))+";","const bubblePos = ["];
+      others.forEach(function(b){ lines.push("  "+fmt(pct(b))+","); });
+      lines.push("];");
+      pre.textContent=lines.join(NL);
+    }
+    btn.onclick=function(){ navigator.clipboard.writeText(pre.textContent); btn.textContent='Copied!'; setTimeout(function(){btn.textContent='Copy';},1200); };
+    var drag=null,ox=0,oy=0;
+    bubbles.forEach(function(b){
+      b.style.pointerEvents='auto'; b.style.cursor='grab'; b.style.userSelect='none';
+      b.addEventListener('pointerdown',function(e){ drag=b; var r=b.getBoundingClientRect(); ox=e.clientX-r.left; oy=e.clientY-r.top; b.setPointerCapture(e.pointerId); b.style.cursor='grabbing'; e.preventDefault(); });
+    });
+    window.addEventListener('pointermove',function(e){ if(!drag)return; var f=funnel.getBoundingClientRect(); var l=(e.clientX-ox-f.left)/f.width*100; var t=(e.clientY-oy-f.top)/f.height*100; drag.style.left=l.toFixed(2)+'%'; drag.style.top=t.toFixed(2)+'%'; readout(); });
+    window.addEventListener('pointerup',function(){ if(drag){drag.style.cursor='grab'; drag=null;} });
+    readout();
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+})();
+`;
 ---
 <Base>
   <!-- HERO -->
@@ -12,14 +105,55 @@ import { site, trust, workspace, steps, caps, roadmap, story, faqs } from '../da
     <div class="radar"><div class="glow"></div></div>
     <div class="wrap hero-in">
       <span class="eyebrow"><Helm size={15} />{site.tagline}</span>
-      <h1>Talk to your<br /><span class="a">telecom stack.</span></h1>
-      <p class="lead">A unified chat that ties into your back-end systems and the AI provider of your choice — so you can pull data, build reports, and answer the hard questions just by asking.</p>
+      <h1>Find the <span class="a">signal.</span></h1>
+      <p class="hero-sub">Talk to your <span class="a">telecom stack.</span></p>
+      <p class="lead"><strong>Ask hard questions. Get real answers</strong> — pulled straight from your switch and explained in plain language, on the AI provider of your choice.</p>
       <div class="cta">
         <a class="btn btn-primary" href="#contact">Request a demo <Icon name="arrow" /></a>
-        <a class="btn btn-ghost" href="#workspace">See how it works</a>
+        <a class="btn btn-ghost" href="#questions">See what you can ask</a>
       </div>
     </div>
   </header>
+
+  <!-- SOURCES — it reads it all -->
+  <div class="sources"><div class="wrap sources-in">
+    <span class="src-label">Reads it all</span>
+    <div class="src-row">
+      {sources.map((s) => (
+        <span class="src"><Icon name={s.icon} size={19} /><span>{s.label}</span></span>
+      ))}
+    </div>
+  </div></div>
+
+  <!-- INSIGHT. CLARITY. ACTION. -->
+  <div class="pillars"><div class="wrap pillars-in">
+    {pillars.map((p) => (
+      <div class="pillar">
+        <span class="pw">{p.word}<span class="a">.</span></span>
+        <p>{p.line}</p>
+      </div>
+    ))}
+  </div></div>
+
+  <!-- THE HARD QUESTIONS — chat bubbles funnel into the signal -->
+  <section class="block" id="questions">
+    <div class="wrap">
+      <div class="signal-head">
+        <span class="eyebrow">What you can finally ask</span>
+        <h2>Dashboards tell you what.<br />TelcoOS tells you why.</h2>
+        <p>Each one needs billing, routing, and CDRs joined across time — which is why no dashboard answers them, and TelcoOS does.</p>
+      </div>
+      <div class="funnel">
+        <div class="bubbles">
+          <span class="bub bub-key" style={`left:${keyPos.l};top:${keyPos.t};`}>What changed?</span>
+          {questions.map((q, i) => (
+            <span class="bub" style={`left:${bubblePos[i].l};top:${bubblePos[i].t};`}>{q}</span>
+          ))}
+        </div>
+        <svg class="funnel-svg" viewBox="0 0 760 860" aria-hidden="true" set:html={funnelSvg}></svg>
+      </div>
+    </div>
+  </section>
 
   <!-- TRUST -->
   <div class="trust"><div class="wrap trust-in">
@@ -158,4 +292,6 @@ import { site, trust, workspace, steps, caps, roadmap, story, faqs } from '../da
       </div>
     </div>
   </section>
+
+  {import.meta.env.DEV && <script is:inline set:html={editorScript} />}
 </Base>
