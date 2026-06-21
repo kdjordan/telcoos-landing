@@ -89,6 +89,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-0.02em;margi
 .trust .label{font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);font-weight:600;}
 .trust .names{display:flex;gap:34px;flex-wrap:wrap;}
 .trust .names span{font-family:var(--display);font-weight:600;font-size:19px;color:var(--text-3);letter-spacing:-0.01em;}
+@media(max-width:760px){.trust-in{justify-content:center;text-align:center;gap:14px;}.trust .names{justify-content:center;gap:22px;}}
 
 /* section */
 section.block{padding:118px 0;}
