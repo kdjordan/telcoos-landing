@@ -81,7 +81,15 @@ h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-0.02em;margi
 .bubbles{position:absolute;inset:0;z-index:2;pointer-events:none;}
 .bub{position:absolute;left:var(--dl);top:var(--dt);max-width:268px;text-align:left;font-size:13px;line-height:1.38;font-weight:500;color:var(--text);background:var(--card);border:1px solid var(--border-2);border-radius:13px;padding:9px 13px;}
 .bub-key{color:var(--accent);font-family:var(--display);font-weight:600;font-size:17px;border-color:var(--accent);background:var(--accent-soft);}
-@media(max-width:760px){.bub{left:var(--ml);top:var(--mt);font-size:11.5px;max-width:165px;padding:6px 10px;}.bub-key{font-size:14px;}}
+/* mobile: drop the scattered bell, stack questions as a chat */
+@media(max-width:760px){
+  .funnel{max-width:480px;margin-top:10px;}
+  .funnel::before,.funnel-svg{display:none;}
+  .bubbles{position:static;display:flex;flex-direction:column;gap:11px;align-items:flex-start;}
+  .bub{position:static;left:auto;top:auto;max-width:86%;font-size:13.5px;line-height:1.4;padding:10px 13px;}
+  .bub:nth-child(even){align-self:flex-end;}
+  .bub-key{align-self:center;font-size:18px;}
+}
 
 /* trust */
 .trust{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg-2);}
