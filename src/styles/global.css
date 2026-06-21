@@ -78,9 +78,9 @@ h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-0.02em;margi
   mask-image:radial-gradient(58% 50% at 50% 66%,#000 0%,#000 30%,transparent 76%);opacity:0.55;}
 .funnel-svg{position:relative;z-index:1;display:block;width:100%;height:auto;}
 .bubbles{position:absolute;inset:0;z-index:2;pointer-events:none;}
-.bub{position:absolute;max-width:268px;text-align:left;font-size:13px;line-height:1.38;font-weight:500;color:var(--text);background:var(--card);border:1px solid var(--border-2);border-radius:13px;padding:9px 13px;}
+.bub{position:absolute;left:var(--dl);top:var(--dt);max-width:268px;text-align:left;font-size:13px;line-height:1.38;font-weight:500;color:var(--text);background:var(--card);border:1px solid var(--border-2);border-radius:13px;padding:9px 13px;}
 .bub-key{color:var(--accent);font-family:var(--display);font-weight:600;font-size:17px;border-color:var(--accent);background:var(--accent-soft);}
-@media(max-width:760px){.bub{font-size:11.5px;max-width:165px;padding:6px 10px;}.bub-key{font-size:14px;}}
+@media(max-width:760px){.bub{left:var(--ml);top:var(--mt);font-size:11.5px;max-width:165px;padding:6px 10px;}.bub-key{font-size:14px;}}
 
 /* trust */
 .trust{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg-2);}

@@ -59,6 +59,15 @@ const bubblePos = [
   { l: '55.3%', t: '71.5%' },
   { l: '5.5%', t: '62.4%' },
 ];
+// Mobile arrangement (≤760px) — separate positions so bubbles don't overlap.
+const keyPosM = { l: '33.5%', t: '10.0%' };
+const bubblePosM = [
+  { l: '53.5%', t: '51.4%' },
+  { l: '47.0%', t: '33.1%' },
+  { l: '1.8%', t: '37.2%' },
+  { l: '51.5%', t: '64.6%' },
+  { l: '5.5%', t: '62.4%' },
+];
 
 // Dev-only bubble-placement editor (stripped from production builds).
 const editorScript = `
@@ -145,9 +154,9 @@ const editorScript = `
       </div>
       <div class="funnel">
         <div class="bubbles">
-          <span class="bub bub-key" style={`left:${keyPos.l};top:${keyPos.t};`}>What changed?</span>
+          <span class="bub bub-key" style={`--dl:${keyPos.l};--dt:${keyPos.t};--ml:${keyPosM.l};--mt:${keyPosM.t};`}>What changed?</span>
           {questions.map((q, i) => (
-            <span class="bub" style={`left:${bubblePos[i].l};top:${bubblePos[i].t};`}>{q}</span>
+            <span class="bub" style={`--dl:${bubblePos[i].l};--dt:${bubblePos[i].t};--ml:${bubblePosM[i].l};--mt:${bubblePosM[i].t};`}>{q}</span>
           ))}
         </div>
         <svg class="funnel-svg" viewBox="0 0 760 860" aria-hidden="true" set:html={funnelSvg}></svg>
