@@ -1,88 +1,91 @@
 // Landing page content. Single source for both the rendered sections and the
-// JSON-LD structured data (so they never drift).
-//
-// ⚠️ DRAFT COPY — from the Claude Design handoff, not yet approved.
-//    - metrics figures are INVENTED placeholders (replace with real or remove)
-//    - trust names and FAQ answers are illustrative
-//    Swap these in place when final copy lands; structure stays the same.
+// JSON-LD structured data. See CONTEXT.md for the locked positioning + the hard
+// current-vs-roadmap line. Keep stack internals, switch names, and storage format
+// OFF the page (outcomes only).
 
 export const site = {
   name: 'TelcoOS',
-  tagline: 'Agentic VOIP Traffic Manager',
+  tagline: 'Agentic Workspace for Telecom',
   description:
-    'TelcoOS is an agentic VOIP traffic manager — routing, rates, and reporting unified into one intelligent workspace that runs the busywork for you.',
-  // TODO(contact): confirm canonical address — kit uses hello@telcoos.io, repo history used k.dean.jordan@gmail.com
-  contactEmail: 'hello@telcoos.io',
+    'TelcoOS is an agentic chat workspace for telecom. It pulls straight from your switch, runs the heavy data analysis your laptop can’t, and builds the rate decks, dashboards, and reports your desk needs — on your command, with the AI provider of your choice.',
+  contactEmail: 'ahoy@telcoos.io',
 };
 
 export const nav = [
-  { href: '#how', label: 'How it works' },
-  { href: '#agent', label: 'The agent' },
-  { href: '#caps', label: 'Capabilities' },
-  { href: '#faq', label: 'FAQ' },
+  { href: '/#workspace', label: 'Workspace' },
+  { href: '/#how', label: 'How it works' },
+  { href: '/#caps', label: 'Capabilities' },
+  { href: '/#roadmap', label: 'Roadmap' },
 ];
 
-export const trust = ['Wholesale carriers', 'VOIP aggregators', 'Routing desks'];
+export const trust = ['Voice wholesalers', 'Termination providers', 'Aggregators'];
 
+// THE WORKSPACE — main thrust. Heading carries the core idea: find the signal.
+export const workspace = {
+  heading: 'Find the signal in the noise.',
+  lead: 'Telecom margin hides in millions of records spread across a dozen reports. TelcoOS pulls straight from your switch, runs the heavy analysis your laptop can’t, and hands back the answer — and the artifact — just by asking. The soul of an operator, the reach of a data scientist.',
+  bullets: [
+    { lead: 'Ask in plain language', rest: ' — it already knows the domain (ASR, ALOC, release causes) and turns your question into the analysis.' },
+    { lead: 'Pulls straight from your switch', rest: ' — routing, CDRs, and backend data, with no manual exports.' },
+    { lead: 'Crunches what Excel can’t', rest: ' — gigabyte CDRs and tens of millions of records, reduced to a clear read.' },
+    { lead: 'Builds the artifact, not just the answer', rest: ' — rate decks, dashboards, target sheets, and reports.' },
+  ],
+};
+
+// HOW IT WORKS — three plain steps, current product.
 export const steps = [
-  {
-    n: '01',
-    icon: 'route',
-    title: 'Routing',
-    body: 'Least-cost routes are evaluated continuously and switched before quality or margin slips — no overnight config marathons.',
-  },
-  {
-    n: '02',
-    icon: 'tag',
-    title: 'Rates',
-    body: "Carrier rate decks are imported, normalized, and diffed automatically, so you always price against the deck that's actually live.",
-  },
-  {
-    n: '03',
-    icon: 'chart',
-    title: 'Reporting',
-    body: 'CDRs roll up into margin, ASR, and ACD views in real time — the answers are ready before anyone has to ask.',
-  },
-];
-
-export const agentBullets = [
-  { lead: 'Re-routes automatically', rest: 'when a carrier degrades or a cheaper path opens up.' },
-  { lead: 'Flags margin risk', rest: 'the moment a new rate deck would put a route underwater.' },
-  { lead: 'Reconciles invoices', rest: 'against your CDRs and surfaces the discrepancies.' },
-  { lead: 'Answers in plain language', rest: '— ask it anything about your traffic and get the query, run.' },
+  { n: '01', icon: 'route', title: 'Connect your switch', body: 'Point it at the switch platforms you run. The shipped skills already know their APIs and pull routing, CDRs, and backend data out of the box.' },
+  { n: '02', icon: 'shield', title: 'Bring your AI', body: 'Run it on the AI provider you trust, picked per task. Your data and your keys stay with your provider.' },
+  { n: '03', icon: 'chart', title: 'Just ask', body: 'Give it a question or an objective — it runs the analysis and builds the artifact, on your command.' },
 ];
 
 export const caps = [
-  { icon: 'route', title: 'Least-cost routing', body: 'Continuous LCR across every carrier and dial code, with quality guards baked in.' },
-  { icon: 'tag', title: 'Rate deck management', body: 'Import, version, and diff carrier decks — and see exactly what changed.' },
-  { icon: 'chart', title: 'CDR analytics', body: 'ASR, ACD, margin, and PDD broken out by route, carrier, and destination.' },
-  { icon: 'shield', title: 'Margin monitoring', body: 'Live profitability per route, with alerts before a deck change bites.' },
-  { icon: 'refresh', title: 'Carrier reconciliation', body: 'Match invoices to your own CDRs and catch billing discrepancies fast.' },
-  { icon: 'bell', title: 'Real-time alerts', body: 'Get pinged on degradation, fraud spikes, and margin events as they happen.' },
+  { icon: 'chart', title: 'Crunches data your laptop can’t', body: 'Gigabyte CDRs and 50M+ records, pulled straight from your switch. No exports, no Excel ceiling.' },
+  { icon: 'tag', title: 'Builds the real artifacts on demand', body: 'Optimal rate decks, per-NPANXX target sheets, weekly growth emails, and a daily profitability dashboard that beats your switch’s own — just by asking.' },
+  { icon: 'route', title: 'Ships with an operator’s brain', body: 'Already knows your switch’s APIs and the domain — ASR, ALOC, release causes — so it works out of the box.' },
+  { icon: 'refresh', title: 'LLM- and switch-agnostic', body: 'Bring the AI provider you trust; run on the switch platforms you already use. No lock-in on either.' },
+  { icon: 'plus', title: 'Extensible with your own skills', body: 'Teach it a repeatable workflow once and reuse it forever. It’s not locked to anyone else’s preferences.' },
+  { icon: 'bell', title: 'Surfaces what needs attention', body: 'A sweep of live traffic flags the issues and suggests the routing moves. You make the call.' },
 ];
 
-// ⚠️ PLACEHOLDER — invented figures. Replace with real numbers or remove the section.
-export const metrics = [
-  { num: '10B+', lbl: 'minutes routed every month' },
-  { num: '<2s', lbl: 'to re-route on a quality drop' },
-  { num: '30%', lbl: 'less time on manual ops' },
-];
+// IN ACTION — a real, CURRENT session (founder does this daily). Proof, not roadmap.
+export const story = {
+  lead: 'A brand-new customer trunk went live and immediately started failing ~80% of its calls. By the numbers, a disaster. In under an hour, TelcoOS:',
+  steps: [
+    { lead: 'Pulled the trunk’s live vendor breakdown', rest: ' even though it wasn’t in the standard mappings.' },
+    { lead: 'Found the top routing vendor rejecting 99% of calls', rest: ' — 986 of 1,000 sampled records came back as congestion.' },
+    { lead: 'Read the routing config', rest: ' and saw the trunk’s entire economics were built around that one dead vendor.' },
+    { lead: 'Diffed cost vs sell across 31 decks and 191,016 NPANXXs', rest: ' — proving the footprint 99.6% profitably coverable. The problem was never pricing; it was mis-stocked routing.' },
+    { lead: 'Named the replacement and tracked the recovery', rest: ' — completion on the live slice climbed from ~1.5% toward double digits within the hour.' },
+  ],
+  outcome: 'All on command — pulled, crunched, and proven before the second coffee.',
+};
+
+// ROADMAP — the autonomy layer + compounding memory. In active development.
+export const roadmap = {
+  intro: 'Today you run the sweep and make the call. Next, TelcoOS runs the loop itself — and remembers everything it learns about your operation.',
+  items: [
+    { title: 'Autonomous traffic management', body: 'The sweep, unattended: it watches live traffic, flags the issue, and acts within the guardrails you set.' },
+    { title: 'A self-learning memory', body: 'A curated memory that survives every session, so it boots each morning already knowing your whole operation.' },
+    { title: 'Self-driving optimization', body: 'From answering your questions to running the desk — continuous re-pricing and re-routing toward the margin you set.' },
+  ],
+};
 
 export const faqs = [
   {
-    q: 'Does the agent route automatically, or do I stay in control?',
-    a: 'You set the guardrails — margin floors, quality thresholds, approved carriers — and decide whether the agent acts on its own or proposes changes for you to confirm.',
+    q: 'How does it handle data too big for Excel?',
+    a: 'It pulls straight from your switch and runs the analysis itself — gigabyte CDRs and tens of millions of records reduced to a clear read. Nothing to export, no spreadsheet to crash.',
   },
   {
-    q: 'How do rate decks get in?',
-    a: 'Upload them in any common format, forward them from your inbox, or connect a feed. TelcoOS normalizes and versions every deck so you always price against what’s live.',
+    q: 'Which AI providers and switches does it work with?',
+    a: 'Your choice on both. TelcoOS is LLM-agnostic — bring the provider you trust and pick the model per task — and ships with connectors for popular switch platforms, with more on the way.',
   },
   {
-    q: 'Will it work with our existing switch?',
-    a: 'TelcoOS sits on top of your routing layer and reads your CDRs — it’s built to complement the softswitch and class-4 infrastructure you already run.',
+    q: 'What can I actually build with it?',
+    a: 'Rate decks, vendor target sheets, growth emails, profitability dashboards, and one-off analyses — just by asking. It ships knowing the domain, and you can teach it your own repeatable workflows as skills.',
   },
   {
-    q: 'How long until we’re live?',
-    a: 'Most teams are importing decks and seeing margin views within days. The agent’s automations switch on as you grow confident in the guardrails.',
+    q: 'Is it autonomous?',
+    a: 'Not yet — and that’s deliberate. Today you drive: you ask, it does the work and shows it. Autonomous monitoring and a self-learning memory are in active development; for now every action is on your command.',
   },
 ];

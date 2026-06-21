@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/content.ts';
+---
+<Base title="Privacy Policy — TelcoOS" description="How TelcoOS handles your information on telcoos.io.">
+  <div class="wrap">
+    <article class="legal">
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: June 21, 2026</p>
+
+      <p>This policy explains how TelcoOS (“we,” “us”) handles information in connection with the website at <strong>telcoos.io</strong> (the “Site”). It covers this marketing site only.</p>
+
+      <h2>Information we collect</h2>
+      <ul>
+        <li><strong>Information you send us.</strong> The Site has no forms or accounts. If you email us — for example to request a demo — we receive your email address and whatever you choose to include (such as your name, company, and message).</li>
+        <li><strong>Server logs.</strong> Our hosting provider may record standard request data (IP address, browser type, timestamps) for security and reliability.</li>
+        <li><strong>Web fonts.</strong> The Site loads fonts from Fontshare (fontshare.com). Your browser’s request to that service is handled under its provider’s terms.</li>
+        <li><strong>Cookies &amp; analytics.</strong> The Site does not set tracking cookies and does not use advertising or analytics trackers.</li>
+      </ul>
+
+      <h2>How we use information</h2>
+      <p>We use the information you send only to respond to your inquiry and to operate and improve the Site. We do not sell or rent your personal information.</p>
+
+      <h2>Sharing</h2>
+      <p>We may share information with service providers who operate the Site on our behalf (such as hosting and email forwarding), and where required by law. We do not sell personal information.</p>
+
+      <h2>Retention</h2>
+      <p>We keep inquiry emails only as long as needed to respond and to maintain reasonable business records.</p>
+
+      <h2>Your choices</h2>
+      <p>You can ask us to access or delete the information you have sent us by emailing <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>. Depending on where you live, you may have additional rights under applicable law.</p>
+
+      <h2>Children</h2>
+      <p>The Site is not directed to children under 16, and we do not knowingly collect their information.</p>
+
+      <h2>Changes</h2>
+      <p>We may update this policy from time to time. The “last updated” date above reflects the current version.</p>
+
+      <h2>Contact</h2>
+      <p>Questions? Email <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.</p>
+
+      <p class="note">This is a generic starter policy provided for convenience and is not legal advice. Please have it reviewed and tailored by qualified counsel before relying on it.</p>
+    </article>
+  </div>
+</Base>

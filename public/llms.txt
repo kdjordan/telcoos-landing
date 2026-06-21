@@ -1,33 +1,46 @@
 # TelcoOS
 
-> The agentic VOIP traffic manager. TelcoOS unifies routing, rates, and
-> reporting into one intelligent workspace and hands the repetitive parts of
-> moving telecom traffic to an agent.
+> An agentic chat workspace for telecom. You talk to it; it pulls straight from
+> your switch, runs the heavy data analysis your laptop can't, and builds the
+> rate decks, dashboards, and reports your desk needs — on your command, with the
+> AI provider of your choice. "Agentic" here means it does the work when asked
+> (not that it runs autonomously).
 
-TelcoOS is built for wholesale carriers, VOIP aggregators, and routing desks —
-the people who move minutes. An agent watches every route, rate deck, and CDR
-stream around the clock and acts on what it sees.
+Built for the carriers in the middle — voice wholesalers, termination providers,
+and aggregators whose P&L is the spread. The job means hunting the signal in the
+noise across huge data: artifacts from backend systems are too big to even open
+in Excel (CDR files run to gigabytes). TelcoOS reduces it to a clear read.
 
-## What the agent does
-- Re-routes automatically when a carrier degrades or a cheaper path opens up.
-- Flags margin risk the moment a new rate deck would put a route underwater.
-- Reconciles carrier invoices against your CDRs and surfaces discrepancies.
-- Answers plain-language questions about your traffic and runs the query.
+## How it works
+1. Connect your switch — the shipped skills already know the supported switch
+   platforms' APIs and pull routing, CDRs, and backend data out of the box.
+2. Bring your AI — run on the provider you trust, picked per task; your data and
+   keys stay with your provider.
+3. Just ask — give it a question or an objective; it runs the analysis and builds
+   the artifact, on your command.
 
-## Capabilities
-- Least-cost routing (LCR) across every carrier and dial code, with quality guards.
-- Rate deck management — import, version, and diff carrier decks.
-- CDR analytics — ASR, ACD, margin, and PDD by route, carrier, and destination.
-- Margin monitoring with alerts before a deck change bites.
-- Carrier reconciliation against your own CDRs.
-- Real-time alerts on degradation, fraud spikes, and margin events.
+## What it does today
+- Crunches data your laptop can't — gigabyte CDRs and 50M+ records, pulled
+  straight from your switch. No exports, no Excel ceiling.
+- Builds real artifacts on demand — optimal customer rate decks, per-NPANXX
+  vendor target sheets, weekly growth emails, and a daily profitability dashboard
+  that beats the switches' own.
+- Ships with an operator's brain — knows your switch's APIs and the domain (ASR,
+  ALOC, release causes), so it works out of the box.
+- LLM- and switch-agnostic — no lock-in on AI provider or switch platform.
+- Extensible with your own skills — teach a repeatable workflow once, reuse it.
+- Surfaces what needs attention — a sweep of live traffic flags issues and
+  suggests routing moves; you decide.
 
-## How it fits
-TelcoOS sits on top of your routing layer and reads your CDRs — it complements
-the softswitch and class-4 infrastructure you already run. You set the
-guardrails (margin floors, quality thresholds, approved carriers) and decide
-whether the agent acts autonomously or proposes changes for you to confirm.
+## On the roadmap (in active development)
+The autonomy layer: the sweep running unattended within your guardrails, a
+self-learning memory that compounds day to day, and self-driving optimization
+that continuously re-prices and re-routes toward the margin you set.
+
+## Who it's for
+Voice wholesalers, termination providers, and aggregators who need answers out of
+their stack faster than the carrier across the table.
 
 ## Contact
 - Site: https://telcoos.io
-- Email: hello@telcoos.io
+- Email: ahoy@telcoos.io
