@@ -174,7 +174,8 @@ footer{border-top:1px solid var(--border);padding:60px 0 40px;}
 .foot-col a:hover{color:var(--text);}
 .foot-brand{max-width:280px;}
 .foot-brand p{color:var(--text-3);font-size:14px;margin:14px 0 0;}
-.foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:28px;border-top:1px solid var(--border);color:var(--text-3);font-size:13.5px;}
+.foot-bottom{border-top:1px solid var(--border);}
+.foot-bottom-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:28px;color:var(--text-3);font-size:13.5px;}
 
 /* contrast band (bg-2 section) */
 .band{background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
